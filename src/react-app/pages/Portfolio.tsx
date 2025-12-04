@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ScrollAnimation, StaggerContainer, StaggerItem } from '@/react-app/components/ScrollAnimation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -92,24 +94,30 @@ export default function Portfolio() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-20">
+      <section className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm rounded-full px-6 py-2 mb-8 shadow-lg">
-            <Sparkles className="w-4 h-4 text-indigo-600" />
-            <span className="text-sm font-medium text-gray-700">Our Best Work</span>
-          </div>
+          <ScrollAnimation direction="down" delay={0}>
+            <div className="inline-flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full px-6 py-2 mb-8 shadow-lg">
+              <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Our Best Work</span>
+            </div>
+          </ScrollAnimation>
           
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-gradient from-indigo-600 to-purple-600">Portfolio</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our collection of professionally edited images across various categories
-          </p>
+          <ScrollAnimation direction="up" delay={0.2}>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+              <span className="text-gradient from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Portfolio</span>
+            </h1>
+          </ScrollAnimation>
+          <ScrollAnimation direction="up" delay={0.4}>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Explore our collection of professionally edited images across various categories
+            </p>
+          </ScrollAnimation>
         </div>
       </section>
 
       {/* Filter Tabs */}
-      <section className="bg-white py-8 sticky top-20 z-40 shadow-md">
+      <section className="bg-white dark:bg-gray-900 py-8 sticky top-20 z-40 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
@@ -119,7 +127,7 @@ export default function Portfolio() {
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category.id
                     ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
                 {category.label}
@@ -130,124 +138,181 @@ export default function Portfolio() {
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
             {filteredItems.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => setSelectedImage(index)}
-                className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
-              >
-                {/* Before/After Slider */}
-                <div className="relative h-80 overflow-hidden bg-gray-100">
-                  <div className="absolute inset-0 flex">
-                    <div className="w-1/2 overflow-hidden">
-                      <img
-                        src={item.before}
-                        alt={`${item.title} - Before`}
-                        className="w-full h-full object-cover"
-                      />
+              <StaggerItem key={index} direction="up" className="group cursor-pointer bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover-lift">
+                <motion.div
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  onClick={() => setSelectedImage(index)}
+                >
+                  {/* Before/After Slider */}
+                  <div className="relative h-80 overflow-hidden bg-gray-100">
+                    <div className="absolute inset-0 flex">
+                      <div className="w-1/2 overflow-hidden">
+                        <motion.img
+                          src={item.before}
+                          alt={`${item.title} - Before`}
+                          className="w-full h-full object-cover"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      </div>
+                      <div className="w-1/2 overflow-hidden">
+                        <motion.img
+                          src={item.after}
+                          alt={`${item.title} - After`}
+                          className="w-full h-full object-cover"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      </div>
                     </div>
-                    <div className="w-1/2 overflow-hidden">
-                      <img
-                        src={item.after}
-                        alt={`${item.title} - After`}
-                        className="w-full h-full object-cover"
-                      />
+                    
+                    {/* Divider */}
+                    <div className="absolute inset-y-0 left-1/2 w-1 bg-white shadow-xl -ml-0.5 z-10"></div>
+                    
+                    {/* Labels */}
+                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
+                      Before
                     </div>
-                  </div>
-                  
-                  {/* Divider */}
-                  <div className="absolute inset-y-0 left-1/2 w-1 bg-white shadow-xl -ml-0.5 z-10"></div>
-                  
-                  {/* Labels */}
-                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
-                    Before
-                  </div>
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
-                    After
+                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
+                      After
+                    </div>
+
+                    {/* Overlay */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center"
+                    >
+                      <div className="text-white text-lg font-semibold">View Details</div>
+                    </motion.div>
                   </div>
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-white text-lg font-semibold">View Details</div>
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{item.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              </div>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {filteredItems.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-xl">No items found in this category</p>
-            </div>
+            <ScrollAnimation direction="fade" className="text-center py-20">
+              <p className="text-gray-500 dark:text-gray-400 text-xl">No items found in this category</p>
+            </ScrollAnimation>
           )}
         </div>
       </section>
 
       {/* Lightbox Modal */}
-      {selectedImage !== null && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
-          <button
+      <AnimatePresence>
+        {selectedImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
           >
-            <X className="w-8 h-8" />
-          </button>
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+            >
+              <X className="w-8 h-8" />
+            </motion.button>
 
-          <button
-            onClick={handlePrevious}
-            disabled={selectedImage === 0}
-            className="absolute left-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
-          >
-            <ChevronLeft className="w-12 h-12" />
-          </button>
+            <motion.button
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevious();
+              }}
+              disabled={selectedImage === 0}
+              className="absolute left-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            >
+              <ChevronLeft className="w-12 h-12" />
+            </motion.button>
 
-          <button
-            onClick={handleNext}
-            disabled={selectedImage === filteredItems.length - 1}
-            className="absolute right-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
-          >
-            <ChevronRight className="w-12 h-12" />
-          </button>
+            <motion.button
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNext();
+              }}
+              disabled={selectedImage === filteredItems.length - 1}
+              className="absolute right-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            >
+              <ChevronRight className="w-12 h-12" />
+            </motion.button>
 
-          <div className="max-w-6xl w-full">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="relative">
-                <img
-                  src={filteredItems[selectedImage].before}
-                  alt="Before"
-                  className="w-full h-auto rounded-lg"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full text-sm font-semibold">
-                  Before
-                </div>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="max-w-6xl w-full"
+            >
+              <div className="grid md:grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="relative"
+                >
+                  <img
+                    src={filteredItems[selectedImage].before}
+                    alt="Before"
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full text-sm font-semibold">
+                    Before
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ x: 50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="relative"
+                >
+                  <img
+                    src={filteredItems[selectedImage].after}
+                    alt="After"
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full text-sm font-semibold">
+                    After
+                  </div>
+                </motion.div>
               </div>
-              <div className="relative">
-                <img
-                  src={filteredItems[selectedImage].after}
-                  alt="After"
-                  className="w-full h-auto rounded-lg"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full text-sm font-semibold">
-                  After
-                </div>
-              </div>
-            </div>
-            <div className="text-center mt-6 text-white">
-              <h3 className="text-2xl font-bold mb-2">{filteredItems[selectedImage].title}</h3>
-              <p className="text-gray-300">{filteredItems[selectedImage].description}</p>
-            </div>
-          </div>
-        </div>
-      )}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-center mt-6 text-white"
+              >
+                <h3 className="text-2xl font-bold mb-2">{filteredItems[selectedImage].title}</h3>
+                <p className="text-gray-300">{filteredItems[selectedImage].description}</p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
