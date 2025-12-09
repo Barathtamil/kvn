@@ -76,8 +76,8 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@pixelperfect.com',
-      link: 'mailto:info@pixelperfect.com',
+      content: 'info@uniquepics.com',
+      link: 'mailto:info@uniquepics.com',
       color: 'from-indigo-500 to-purple-500',
     },
     {
@@ -273,7 +273,7 @@ export default function Contact() {
           <ScrollAnimation direction="scale" delay={0.6}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:info@pixelperfect.com"
+                href="mailto:info@uniquepics.com"
                 className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105"
               >
                 Email Us

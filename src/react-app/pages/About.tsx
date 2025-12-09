@@ -111,7 +111,7 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-gray-600 dark:text-gray-300 text-lg">
                   <p>
-                    Founded in 2013, PixelPerfect Studio began with a simple mission: to help photographers and businesses transform their images into stunning visual masterpieces.
+                    Founded in 2013, UNIQUE PICS began with a simple mission: to help photographers and businesses transform their images into stunning visual masterpieces.
                   </p>
                   <p>
                     Over the past decade, we've grown from a small team of passionate editors to a globally recognized photo editing service, working with clients from over 30 countries.
@@ -227,7 +227,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation direction="fade" className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Why Choose <span className="text-gradient from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">PixelPerfect</span>
+              Why Choose <span className="text-gradient from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">UNIQUE PICS</span>
             </h2>
           </ScrollAnimation>
 

@@ -36,13 +36,14 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <Sparkles className="w-8 h-8 text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors" />
-              <div className="absolute inset-0 bg-indigo-400 blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
-            </div>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img 
+              src="/logo.png" 
+              alt="UNIQUE PICS Logo" 
+              className="h-10 w-auto transition-transform group-hover:scale-110 dark:invert"
+            />
             <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-              PixelPerfect
+              UNIQUE PICS
             </span>
           </Link>
 

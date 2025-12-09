@@ -10,9 +10,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Sparkles className="w-8 h-8 text-indigo-400" />
-              <span className="text-2xl font-bold">PixelPerfect</span>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/logo.png" 
+                alt="UNIQUE PICS Logo" 
+                className="h-10 w-auto invert"
+              />
+              <span className="text-2xl font-bold">UNIQUE PICS</span>
             </div>
             <p className="text-gray-300 text-sm mb-4">
               Professional photo editing and retouching services for photographers, studios, and businesses worldwide.
@@ -91,8 +95,8 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-sm">
                 <Mail className="w-4 h-4 text-indigo-400" />
-                <a href="mailto:info@pixelperfect.com" className="text-gray-300 hover:text-white transition-colors">
-                  info@pixelperfect.com
+                <a href="mailto:info@uniquepics.com" className="text-gray-300 hover:text-white transition-colors">
+                  info@uniquepics.com
                 </a>
               </li>
               <li className="flex items-center space-x-2 text-sm">
@@ -135,7 +139,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} PixelPerfect Studio. All rights reserved.
+              © {currentYear} UNIQUE PICS. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">

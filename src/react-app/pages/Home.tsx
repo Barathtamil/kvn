@@ -99,7 +99,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation direction="fade" className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Why Choose <span className="text-gradient from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">PixelPerfect</span>
+              Why Choose <span className="text-gradient from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">UNIQUE PICS</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               We combine cutting-edge technology with artistic expertise to deliver exceptional results
@@ -202,7 +202,7 @@ export default function Home() {
           </ScrollAnimation>
           <ScrollAnimation direction="fade" delay={0.4}>
             <p className="text-xl mb-10 text-white/90">
-              Try our service with a free sample and experience the PixelPerfect difference
+              Try our service with a free sample and experience the UNIQUE PICS difference
             </p>
           </ScrollAnimation>
           <ScrollAnimation direction="scale" delay={0.6}>

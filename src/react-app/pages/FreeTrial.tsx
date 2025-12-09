@@ -84,7 +84,7 @@ export default function FreeTrial() {
           </ScrollAnimation>
           <ScrollAnimation direction="up" delay={0.4}>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Experience the PixelPerfect difference with a complimentary edit of 1-3 images. No credit card required, no obligations.
+              Experience the UNIQUE PICS difference with a complimentary edit of 1-3 images. No credit card required, no obligations.
             </p>
           </ScrollAnimation>
         </div>
